@@ -37,12 +37,7 @@ function draw() {
   /* AMPLITUDE TRACKING */
   
   // Get the overall volume (between 0 and 1.0)
-  var volume = source.getLevel();
-  // Graph the overall potential volume, w/ a line at the threshold
-  var y = map(volume, 0, 0.5, 0, 255)
-  // Draw
-  fill(0,y)
-  ellipse(100,100,200,200)
+  var volume = source.getLevel()
   
   /* PITCH TRACKING */
 
@@ -51,12 +46,29 @@ function draw() {
   var corrBuff = autoCorrelate(timeDomain)
   var freq = findFrequency(corrBuff)
   
-  if (y > 30) {
-  colorMode(HSB)
-  fill(freq/10,255,255)
-  ellipse(300,100,200,200)
-  text ('Fundamental Frequency: ' + freq.toFixed(2), 400, 50); 
-  }
+  
+  
+  /* WRITE YOUR CODE THIS COMMENT 
+   I have created two variables for you:
+  
+   volume
+   volume is a number between 0 and 1
+   It represents the volume of audio input from your computer
+   
+   freq
+   freq is a number between 0 and 20000
+   It represents the pitch of the incoming sound in hertz
+  */
+
+  // Draw
+  fill(0,volume * 255)
+  ellipse(100,100,200,200)
+  
+  //if (volume > 0.3) {
+    colorMode(HSB)
+    fill(freq/10,255,255)
+    ellipse(300,100,200,200)
+  //}
     
 }
 
